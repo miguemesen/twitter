@@ -1,9 +1,20 @@
-import React from 'react'
+import React from "react";
+import Login from "./Login";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./Home";
+import ProjectTemplate from "./ProjectTemplate";
 
 const NavigationRouter = () => {
   return (
-    <div>NavigationRouter</div>
-  )
-}
+    <Router>
+      <ProjectTemplate>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </ProjectTemplate>
+    </Router>
+  );
+};
 
-export default NavigationRouter
+export default NavigationRouter;

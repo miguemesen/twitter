@@ -1,10 +1,8 @@
+import React from "react";
+import NavigationRouter from "./NavigationRouter";
 
 function App() {
-  return (
-    <div className="App">
-      Twitter test
-    </div>
-  );
+  return <NavigationRouter className="App" />;
 }
 
 export default App;
