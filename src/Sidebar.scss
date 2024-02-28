@@ -1,9 +1,11 @@
 .navbar {
   // position: fixed;
   transition: width 200ms ease;
-  background-color: #FFFFFF;
+  background-color: #141620;
   height: 100%;
   width: 100px;
+  border-right: 2px solid #cbcbcb11;
+  border-left: 2px solid #cbcbcb11;
 
   position: relative;
   top: 0;
@@ -44,8 +46,7 @@
       text-transform: uppercase;
       margin-bottom: 12px;
       text-align: center;
-      color: red;
-      background-color: #3F3F3F;
+      background-color: #141620;
       font-size: 16px;
       letter-spacing: 0.3ch;
       width: 100%;
@@ -58,6 +59,7 @@
       &-nav-link{
         display: flex;
         align-items: center;
+        justify-content: center;
         height: 50px;
         text-decoration: none;
         margin: 25px 10px 10px 10px;
@@ -73,7 +75,7 @@
       display: flex;
       align-items: center;
       height: 50px;
-      color: black;
+      color: rgb(255, 255, 255);
       text-decoration: none;
       transition: 600ms;
       margin: 10px;
@@ -96,7 +98,7 @@
 
       .nav-link{
         .icon{
-          color: #5D7285;
+          color: #ffffff;
           width: 30px;
           height: 30px;
         }

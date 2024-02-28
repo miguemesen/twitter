@@ -20,7 +20,7 @@ const Sidebar = () => {
           </a>
         </li>
         <li className="nav-item">
-          <a href="/algunaRuta" className="nav-link">
+          <a href="/" className="nav-link">
             <div>
               <FaHome className="icon" />
             </div>
