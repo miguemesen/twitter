@@ -5,7 +5,6 @@ import { FaUser } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaMessage } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   return (
