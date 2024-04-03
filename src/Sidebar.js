@@ -42,8 +42,8 @@ const Sidebar = () => {
             <span className="link-text">Messages</span>
           </a>
         </li>
-        <li className="nav-item">
-          <a href="/login" className="nav-link">
+        <li className="nav-item" onClick={() => localStorage.clear()}>
+          <a href="/login" className="nav-link" >
             <div>
               <RiLogoutBoxRLine className="icon" />
             </div>
