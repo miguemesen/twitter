@@ -2,6 +2,7 @@ import React from 'react'
 import './Register.scss'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { register } from './api';
 
 
 const Register = () => {
@@ -16,18 +17,13 @@ const Register = () => {
     if (password === "" || password !== confirmPassword) {
       return
     }
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/register`,{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json' 
-      },
-      body: JSON.stringify({username, email, password}) 
-    })
+    const response = await register(username, email, password)
     
     const responseData = await response.json();
 
     if (response.ok) {
       localStorage.setItem('username', username)
+      localStorage.setItem('user_id', responseData.user_id)
       navigate("/")
     } else {
       alert(responseData.message)

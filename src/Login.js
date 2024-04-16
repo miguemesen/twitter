@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 import { useState } from "react";
+import { login } from "./api";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -9,18 +10,12 @@ function Login() {
   const navigate = useNavigate();
 
   const loginUser = async () => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`,{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json' 
-      },
-      body: JSON.stringify({username, password}) 
-    })
+    const response = await login(username, password);
     
     const responseData = await response.json();
-
     if (response.ok) {
       localStorage.setItem('username', username)
+      localStorage.setItem('user_id', responseData.user_id)
       navigate("/")
     } else {
       alert(responseData.message)
@@ -37,7 +32,7 @@ function Login() {
         <br/>
         <span>Username</span>
         <input
-          autocomplete="off"
+          autoComplete="off"
           id="username"
           label="Username"
           value={username}

@@ -1,48 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import './Home.scss'
 import Post from './Post'
-
-const data = [
-  {
-    name: 'Juancito123',
-    username: 'juan123',
-    message: 'this is my tweet',
-    date: '2024-02-13T18:09:40.331Z',
-  },
-  {
-    name: 'Pedro456',
-    username: 'pedro456',
-    message: 'cool tweet',
-    date: '2024-02-10T18:09:40.331Z',
-  },
-]
+import { createPost, getMyFeed } from './api';
+import { getUserInformation } from './utils';
 
 const Home = () => {
-
   const [posts, setPosts] = useState([]);
   const [tweetText, setTweetText] = useState();
+  const userInformation = getUserInformation();
 
-  const handlePostOnClick = () => {
+  const handlePostOnClick = async () => {
     if (tweetText) {
       // post tweet
-      
+      await postTweet()
       setTweetText('')
     }
   }
 
-  const fetchData = async () => {
-    const response = await fetch(process.env.REACT_APP_BACKEND_URL);
-    // Parse the response as JSON
-    const responseData = await response.json();
+  const postTweet = async () => {
+    const response = await createPost(tweetText,userInformation.user_id)
+    fetchFeed()
+  }
 
-    console.log('print: responseData: ', responseData);
+  const fetchFeed = async () => {
+    const response = await getMyFeed(userInformation.user_id)
+    const responseData = await response.json()
+    setPosts(responseData)
   }
 
   useEffect(() => {
-    // fetch posts
-    fetchData()
-    setPosts(data)
-  }, [])
+    fetchFeed()
+  },[])
 
   return (
     <div className='home'>
@@ -53,7 +41,7 @@ const Home = () => {
         <textarea className='home-create-tweet-text-area' placeholder='What is happening?!' value={tweetText} onChange={(e) => setTweetText(e.target.value)}/>
         <button className='home-create-tweet-button-post' onClick={() => handlePostOnClick()}>Post</button>
       </div>
-      {posts.map((d,i) => <Post key={i} name={d.name} username={d.username} message={d.message} date={d.date}/>)}
+      {posts && posts?.map((d,i) => <Post key={i} name={d.email} username={d.username} message={d.paragraph} date={d.date}/>)}
     </div>
   )
 }
